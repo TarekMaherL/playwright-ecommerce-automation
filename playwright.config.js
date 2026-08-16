@@ -1,11 +1,49 @@
+const path = require('path');
 const { defineConfig } = require('@playwright/test');
 const { environment } = require('./config/environment');
 
-module.exports = defineConfig({
-  testDir: './tests',
+const authFile = path.join(
+    __dirname,
+    'storage',
+    'auth.json'
+);
 
-  use: {
-    baseURL: environment.baseUrl,
-    browserName: 'chromium',
-  },
+module.exports = defineConfig({
+    testDir: './tests',
+
+    use: {
+        baseURL: environment.baseUrl,
+    },
+
+    projects: [
+        {
+            name: 'setup',
+            testMatch: '**/*.setup.js',
+            use: {
+                browserName: 'chromium',
+            },
+        },
+
+        {
+            name: 'auth-chromium',
+            testMatch: '**/auth/*.spec.js',
+            use: {
+                browserName: 'chromium',
+            },
+        },
+
+        {
+            name: 'chromium',
+            testIgnore: [
+                '**/auth/*.spec.js',
+                '**/*.setup.js',
+            ],
+            dependencies: ['setup'],
+
+            use: {
+                browserName: 'chromium',
+                storageState: authFile,
+            },
+        },
+    ],
 });
