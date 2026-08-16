@@ -1,0 +1,25 @@
+{
+  "validationCases": [
+    {
+      "id": "AUTH-005",
+      "caseName": "empty email",
+      "email": "",
+      "password": "DummyPassword123!",
+      "expectedMessage": "*Email is required"
+    },
+    {
+      "id": "AUTH-006",
+      "caseName": "empty password",
+      "email": "dummy@example.com",
+      "password": "",
+      "expectedMessage": "*Password is required"
+    },
+    {
+      "id": "AUTH-008",
+      "caseName": "invalid email format",
+      "email": "invalid-email",
+      "password": "DummyPassword123!",
+      "expectedMessage": "*Enter Valid Email"
+    }
+  ]
+}
