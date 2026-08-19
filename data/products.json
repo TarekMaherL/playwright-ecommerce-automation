@@ -1,0 +1,16 @@
+{
+  "products": {
+    "adidasOriginal": {
+      "name": "ADIDAS ORIGINAL",
+      "price": 11500
+    },
+    "zaraCoat": {
+      "name": "ZARA COAT 3",
+      "price": 11500
+    },
+    "iphone13Pro": {
+      "name": "iphone 13 pro",
+      "price": 55000
+    }
+  }
+}
