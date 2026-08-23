@@ -107,6 +107,10 @@ class ProductsPage {
     await this.maxPriceInput.fill(String(maxPrice));
     await this.maxPriceInput.press('Enter');
     }
+
+    async openCart() {
+    await this.cartButton.click();
+    }
 }
 
 module.exports = { ProductsPage };

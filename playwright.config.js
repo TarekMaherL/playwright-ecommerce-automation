@@ -11,6 +11,8 @@ const authFile = path.join(
 module.exports = defineConfig({
     testDir: './tests',
 
+    workers: 1,
+
     use: {
         baseURL: environment.baseUrl,
     },
