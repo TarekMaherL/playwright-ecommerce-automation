@@ -1,21 +1,17 @@
-const { test, expect } = require('@playwright/test');
-const { ProductsPage } = require('../../pages/ProductsPage');
-const { CartPage } = require('../../pages/CartPage');
-const { CheckoutPage } = require('../../pages/CheckoutPage');
-const { OrderConfirmationPage } = require('../../pages/OrderConfirmationPage');
-const { OrdersPage } = require('../../pages/OrdersPage');
-const { OrderDetailsPage } = require('../../pages/OrderDetailsPage');
+const { test, expect } = require('../../fixtures/testFixtures');
 const productData = require('../../data/products.json');
 
 test.describe('Purchase E2E', () => {
 
-    test('E2E-001 | user can complete purchase and verify order @smoke @e2e', async ({ page }) => {
-        const productsPage = new ProductsPage(page);
-        const cartPage = new CartPage(page);
-        const checkoutPage = new CheckoutPage(page);
-        const confirmationPage = new OrderConfirmationPage(page);
-        const ordersPage = new OrdersPage(page);
-        const orderDetailsPage = new OrderDetailsPage(page);
+    test('E2E-001 | user can complete purchase and verify order @smoke @e2e', async ({
+    page,
+    productsPage,
+    cartPage,
+    checkoutPage,
+    confirmationPage,
+    ordersPage,
+    orderDetailsPage
+}) => {
 
         const product = productData.products.adidasOriginal;
 

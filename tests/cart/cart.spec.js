@@ -1,20 +1,18 @@
-const { test, expect } = require('@playwright/test');
-const { ProductsPage } = require('../../pages/ProductsPage');
-const { CartPage } = require('../../pages/CartPage');
+const { test, expect } = require('../../fixtures/testFixtures');
 const productData = require('../../data/products.json');
 
 test.describe('Cart', () => {
 
-    test.beforeEach(async ({ page }) => {
-        const productsPage = new ProductsPage(page);
-
-        await productsPage.goto();
+    test.beforeEach(async ({ productsPage }) => {
+    await productsPage.goto();
     });
 
-    test('CART-001 | added product is displayed in cart @smoke', async ({ page }) => {
-        const productsPage = new ProductsPage(page);
-        const cartPage = new CartPage(page);
-
+    test('CART-001 | added product is displayed in cart @smoke', async ({ 
+        page,
+        productsPage,
+        cartPage 
+    }) => {
+        
         const product = productData.products.adidasOriginal;
 
         await productsPage.addProductToCart(product.name);
@@ -34,9 +32,11 @@ test.describe('Cart', () => {
         ).toBeVisible();
     });
 
-    test('CART-002 | user can continue shopping from cart @regression', async ({ page }) => {
-    const productsPage = new ProductsPage(page);
-    const cartPage = new CartPage(page);
+    test('CART-002 | user can continue shopping from cart @regression', async ({
+    page,
+    productsPage,
+    cartPage
+}) => {
 
     const product = productData.products.adidasOriginal;
 
@@ -63,9 +63,11 @@ test.describe('Cart', () => {
     ).toBeVisible();
     });
 
-    test('CART-003 | user can remove product from cart @regression', async ({ page }) => {
-    const productsPage = new ProductsPage(page);
-    const cartPage = new CartPage(page);
+    test('CART-003 | user can remove product from cart @regression', async ({
+    page,
+    productsPage,
+    cartPage
+}) => {
 
     const product = productData.products.adidasOriginal;
 
@@ -92,9 +94,11 @@ test.describe('Cart', () => {
     ).toHaveCount(0);
     });
 
-    test('CART-004 | cart displays correct product price and totals @regression', async ({ page }) => {
-    const productsPage = new ProductsPage(page);
-    const cartPage = new CartPage(page);
+    test('CART-004 | cart displays correct product price and totals @regression', async ({
+    page,
+    productsPage,
+    cartPage
+}) => {
 
     const product = productData.products.adidasOriginal;
 
@@ -129,9 +133,11 @@ test.describe('Cart', () => {
     );
     });
 
-    test('CART-005 | user can proceed from cart to checkout @smoke', async ({ page }) => {
-    const productsPage = new ProductsPage(page);
-    const cartPage = new CartPage(page);
+    test('CART-005 | user can proceed from cart to checkout @smoke', async ({
+    page,
+    productsPage,
+    cartPage
+}) => {
 
     const product = productData.products.adidasOriginal;
 

@@ -1,17 +1,15 @@
-const { test, expect } = require('@playwright/test');
-const { ProductsPage } = require('../../pages/ProductsPage');
+const { test, expect } = require('../../fixtures/testFixtures');
 const productData = require('../../data/products.json');
-const { ProductDetailsPage } = require('../../pages/ProductDetailsPage');
 
 test.describe('Products', () => {
-    test.beforeEach(async ({ page }) => {
-        const productsPage = new ProductsPage(page);
-
-        await productsPage.goto();
+    test.beforeEach(async ({ productsPage }) => {
+    await productsPage.goto();
     });
 
-    test('PRODUCT-001 | product catalog loads for authenticated user @smoke', async ({ page }) => {
-        const productsPage = new ProductsPage(page);
+    test('PRODUCT-001 | product catalog loads for authenticated user @smoke', async ({ 
+        page,
+        productsPage 
+    }) => {
 
         await expect(page).toHaveURL(/#\/dashboard\/dash$/);
 
@@ -20,8 +18,7 @@ test.describe('Products', () => {
         await expect(productsPage.signOutButton).toBeVisible();
     });
 
-    test('PRODUCT-002 | product names are displayed @regression', async ({ page }) => {
-        const productsPage = new ProductsPage(page);
+    test('PRODUCT-002 | product names are displayed @regression', async ({ productsPage }) => {
 
         const adidasProduct = productsPage.getProductCard(
             productData.products.adidasOriginal.name
@@ -37,8 +34,7 @@ test.describe('Products', () => {
         ).toBeVisible();
     });
 
-    test('PRODUCT-003 | product price is displayed correctly @regression', async ({ page }) => {
-        const productsPage = new ProductsPage(page);
+    test('PRODUCT-003 | product price is displayed correctly @regression', async ({ productsPage }) => {
 
         const adidasProduct = productsPage.getProductCard(
             productData.products.adidasOriginal.name
@@ -49,9 +45,11 @@ test.describe('Products', () => {
         );
     });
 
-    test('PRODUCT-004 | user can open product details @regression', async ({ page }) => {
-    const productsPage = new ProductsPage(page);
-    const productDetailsPage = new ProductDetailsPage(page);
+    test('PRODUCT-004 | user can open product details @regression', async ({ 
+    page,
+    productsPage,
+    productDetailsPage
+    }) => {
 
     const product = productData.products.adidasOriginal;
 
@@ -67,9 +65,11 @@ test.describe('Products', () => {
     });
 
 
-test('PRODUCT-005 | product name remains consistent on details page @regression', async ({ page }) => {
-    const productsPage = new ProductsPage(page);
-    const productDetailsPage = new ProductDetailsPage(page);
+test('PRODUCT-005 | product name remains consistent on details page @regression', async ({ 
+    page,
+    productsPage,
+    productDetailsPage 
+    }) => {
 
     const product = productData.products.adidasOriginal;
 
@@ -81,9 +81,11 @@ test('PRODUCT-005 | product name remains consistent on details page @regression'
     });
 
 
-test('PRODUCT-006 | product price remains consistent on details page @regression', async ({ page }) => {
-    const productsPage = new ProductsPage(page);
-    const productDetailsPage = new ProductDetailsPage(page);
+test('PRODUCT-006 | product price remains consistent on details page @regression', async ({ 
+    page,
+    productsPage,
+    productDetailsPage 
+    }) => {
 
     const product = productData.products.adidasOriginal;
 
@@ -94,8 +96,7 @@ test('PRODUCT-006 | product price remains consistent on details page @regression
     ).toBeVisible();
     });
 
-    test('PRODUCT-007 | user can add product to cart from catalog @smoke', async ({ page }) => {
-    const productsPage = new ProductsPage(page);
+    test('PRODUCT-007 | user can add product to cart from catalog @smoke', async ({ productsPage }) => {
 
     const product = productData.products.adidasOriginal;
 
@@ -110,9 +111,11 @@ test('PRODUCT-006 | product price remains consistent on details page @regression
     ).toContainText('1');
     });
 
-    test('PRODUCT-008 | user can add product to cart from product details @smoke', async ({ page }) => {
-    const productsPage = new ProductsPage(page);
-    const productDetailsPage = new ProductDetailsPage(page);
+    test('PRODUCT-008 | user can add product to cart from product details @smoke', async ({ 
+    page,
+    productsPage,
+    productDetailsPage 
+    }) => {
 
     const product = productData.products.adidasOriginal;
 
@@ -133,8 +136,7 @@ test('PRODUCT-006 | product price remains consistent on details page @regression
     ).toContainText('1');
     });
 
-    test('PRODUCT-009 | user can search for an existing product @regression', async ({ page }) => {
-    const productsPage = new ProductsPage(page);
+    test('PRODUCT-009 | user can search for an existing product @regression', async ({ productsPage }) => {
 
     const product = productData.products.iphone13Pro;
 
@@ -149,8 +151,7 @@ test('PRODUCT-006 | product price remains consistent on details page @regression
     ).toBeVisible();
     });
 
-    test('PRODUCT-010 | search shows no products for unknown product @regression', async ({ page }) => {
-    const productsPage = new ProductsPage(page);
+    test('PRODUCT-010 | search shows no products for unknown product @regression', async ({ productsPage }) => {
 
     const unknownProduct = 'PRODUCT THAT DOES NOT EXIST';
 
@@ -165,8 +166,7 @@ test('PRODUCT-006 | product price remains consistent on details page @regression
     ).toHaveCount(0);
     });
 
-    test('PRODUCT-011 | user can filter products by category @regression', async ({ page }) => {
-    const productsPage = new ProductsPage(page);
+    test('PRODUCT-011 | user can filter products by category @regression', async ({ productsPage }) => {
 
     const category = 'electronics';
 
@@ -205,8 +205,7 @@ test('PRODUCT-006 | product price remains consistent on details page @regression
     ).toBeVisible();
     });
 
-    test('PRODUCT-012 | user can filter products by subcategory @regression', async ({ page }) => {
-    const productsPage = new ProductsPage(page);
+    test('PRODUCT-012 | user can filter products by subcategory @regression', async ({ productsPage }) => {
 
     const subcategory = 'mobiles';
 
@@ -245,8 +244,7 @@ test('PRODUCT-006 | product price remains consistent on details page @regression
     ).toBeVisible();
     });
 
-    test('PRODUCT-013 | user can filter products by gender @regression', async ({ page }) => {
-    const productsPage = new ProductsPage(page);
+    test('PRODUCT-013 | user can filter products by gender @regression', async ({ productsPage }) => {
 
     const gender = 'women';
 
@@ -285,8 +283,7 @@ test('PRODUCT-006 | product price remains consistent on details page @regression
     ).toBeVisible();
     });
 
-    test('PRODUCT-014 | user can filter products by price range @regression', async ({ page }) => {
-    const productsPage = new ProductsPage(page);
+    test('PRODUCT-014 | user can filter products by price range @regression', async ({ productsPage }) => {
 
     const product = productData.products.iphone13Pro;
 
@@ -316,9 +313,11 @@ test('PRODUCT-006 | product price remains consistent on details page @regression
     ).toHaveCount(0);
     });
 
-    test('PRODUCT-015 | user can continue shopping from product details @regression', async ({ page }) => {
-    const productsPage = new ProductsPage(page);
-    const productDetailsPage = new ProductDetailsPage(page);
+    test('PRODUCT-015 | user can continue shopping from product details @regression', async ({ 
+    page,
+    productsPage,
+    productDetailsPage 
+    }) => {
 
     const product = productData.products.adidasOriginal;
 

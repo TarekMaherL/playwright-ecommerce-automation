@@ -1,37 +1,35 @@
-const { test, expect } = require('@playwright/test');
-const { ProductsPage } = require('../../pages/ProductsPage');
-const { CartPage } = require('../../pages/CartPage');
-const { CheckoutPage } = require('../../pages/CheckoutPage');
-const { OrderConfirmationPage } = require('../../pages/OrderConfirmationPage');
+const { test, expect } = require('../../fixtures/testFixtures');
 const productData = require('../../data/products.json');
 
 test.describe('Checkout', () => {
 
-    test.beforeEach(async ({ page }) => {
-        const productsPage = new ProductsPage(page);
-        const cartPage = new CartPage(page);
+    test.beforeEach(async ({
+    page,
+    productsPage,
+    cartPage
+}) => {
+    const product = productData.products.adidasOriginal;
 
-        const product = productData.products.adidasOriginal;
+    await productsPage.goto();
 
-        await productsPage.goto();
+    await productsPage.addProductToCart(product.name);
 
-        await productsPage.addProductToCart(product.name);
+    await expect(
+        productsPage.productAddedToast
+    ).toBeVisible();
 
-        await expect(
-            productsPage.productAddedToast
-        ).toBeVisible();
+    await productsPage.openCart();
 
-        await productsPage.openCart();
+    await cartPage.proceedToCheckout();
 
-        await cartPage.proceedToCheckout();
+    await expect(page).toHaveURL(
+        /#\/dashboard\/order\?prop=/
+    );
+});
 
-        await expect(page).toHaveURL(
-            /#\/dashboard\/order\?prop=/
-        );
-    });
-
-    test('CHECKOUT-001 | country is required before placing order @regression', async ({ page }) => {
-    const checkoutPage = new CheckoutPage(page);
+    test('CHECKOUT-001 | country is required before placing order @regression', async ({
+    checkoutPage
+    }) => {
 
     await expect(
         checkoutPage.placeOrderButton
@@ -44,9 +42,11 @@ test.describe('Checkout', () => {
     ).toBeVisible();
     });
 
-   test('CHECKOUT-002 | user can successfully place an order @smoke', async ({ page }) => {
-    const checkoutPage = new CheckoutPage(page);
-    const confirmationPage = new OrderConfirmationPage(page);
+    test('CHECKOUT-002 | user can successfully place an order @smoke', async ({
+    page,
+    checkoutPage,
+    confirmationPage
+}) => {
 
     const product = productData.products.adidasOriginal;
 
