@@ -27,7 +27,7 @@ test.describe('Checkout', () => {
     );
 });
 
-    test('CHECKOUT-001 | country is required before placing order @regression', async ({
+    test('CHECKOUT-001 | country is required before placing order @regression @negative', async ({
     checkoutPage
     }) => {
 
@@ -42,7 +42,7 @@ test.describe('Checkout', () => {
     ).toBeVisible();
     });
 
-    test('CHECKOUT-002 | user can successfully place an order @smoke', async ({
+    test('CHECKOUT-002 | user can successfully place an order @smoke @regression', async ({
     page,
     checkoutPage,
     confirmationPage

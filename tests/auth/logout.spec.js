@@ -3,7 +3,7 @@ const { LoginPage } = require('../../pages/LoginPage');
 const { ProductsPage } = require('../../pages/ProductsPage');
 
 test.describe('Logout', () => {
-    test('AUTH-002 | authenticated user can logout @smoke @auth', async ({ page }) => {
+    test('AUTH-002 | authenticated user can logout @smoke @regression @auth', async ({ page }) => {
         const loginPage = new LoginPage(page);
         const productsPage = new ProductsPage(page);
 

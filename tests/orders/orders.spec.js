@@ -3,7 +3,7 @@ const productData = require('../../data/products.json');
 
 test.describe('Orders', () => {
 
-    test('ORDER-001 | newly created order appears in order history @smoke', async ({
+    test('ORDER-001 | newly created order appears in order history @smoke @regression', async ({
     page,
     productsPage,
     cartPage,

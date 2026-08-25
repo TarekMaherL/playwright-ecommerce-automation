@@ -2,7 +2,7 @@ const { test, expect } = require('@playwright/test');
 const { LoginPage } = require('../../pages/LoginPage');
 
 test.describe('Authentication', () => {
-    test('AUTH-001 | user can login with valid credentials @smoke', async ({ page }) => {
+    test('AUTH-001 | user can login with valid credentials @smoke @regression @auth', async ({ page }) => {
         const loginPage = new LoginPage(page);
 
         await loginPage.goto();

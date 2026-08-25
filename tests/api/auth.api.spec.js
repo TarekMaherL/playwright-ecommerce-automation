@@ -2,7 +2,7 @@ const { test, expect } = require('@playwright/test');
 
 test.describe('Authentication API', () => {
 
-    test('API-001 | valid credentials return successful login response @api @smoke', async ({
+    test('API-001 | valid credentials return successful login response @api @smoke @regression @auth', async ({
         request
     }) => {
 
@@ -34,7 +34,7 @@ test.describe('Authentication API', () => {
         expect(responseBody.token).toBeTruthy();
     });
 
-        test('API-003 | invalid password returns authentication error @api @negative', async ({
+        test('API-003 | invalid password returns authentication error @api @negative @regression @auth', async ({
         request
     }) => {
         const response = await request.post(

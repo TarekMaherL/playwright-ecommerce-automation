@@ -3,7 +3,7 @@ const productData = require('../../data/products.json');
 
 test.describe('Purchase E2E', () => {
 
-    test('E2E-001 | user can complete purchase and verify order @smoke @e2e', async ({
+    test('E2E-001 | user can complete purchase and verify order @smoke @e2e @regression', async ({
     page,
     productsPage,
     cartPage,

@@ -7,7 +7,7 @@ test.describe('Cart', () => {
     await productsPage.goto();
     });
 
-    test('CART-001 | added product is displayed in cart @smoke', async ({ 
+    test('CART-001 | added product is displayed in cart @smoke @regression', async ({ 
         page,
         productsPage,
         cartPage 
@@ -133,7 +133,7 @@ test.describe('Cart', () => {
     );
     });
 
-    test('CART-005 | user can proceed from cart to checkout @smoke', async ({
+    test('CART-005 | user can proceed from cart to checkout @smoke @regression', async ({
     page,
     productsPage,
     cartPage

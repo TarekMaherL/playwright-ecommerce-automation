@@ -4,7 +4,7 @@ const invalidLoginData = require('../../data/invalidLoginData.json');
 
 test.describe('Negative Authentication', () => {
     for (const testCase of invalidLoginData.validationCases) {
-        test(`${testCase.id} | rejects login with ${testCase.caseName} @regression @auth`, async ({ page }) => {
+        test(`${testCase.id} | rejects login with ${testCase.caseName} @regression @auth @negative`, async ({ page }) => {
             const loginPage = new LoginPage(page);
 
             await loginPage.goto();
@@ -22,7 +22,7 @@ test.describe('Negative Authentication', () => {
         });
     }
 
-    test('AUTH-007 | rejects login when both fields are empty @regression @auth', async ({ page }) => {
+    test('AUTH-007 | rejects login when both fields are empty @regression @auth @negative', async ({ page }) => {
         const loginPage = new LoginPage(page);
 
         await loginPage.goto();
@@ -34,7 +34,7 @@ test.describe('Negative Authentication', () => {
         await expect(page).toHaveURL(/#\/auth\/login$/);
     });
 
-    test('AUTH-003 | rejects unknown email @regression @auth', async ({ page }) => {
+    test('AUTH-003 | rejects unknown email @regression @auth @negative', async ({ page }) => {
         const loginPage = new LoginPage(page);
 
         await loginPage.goto();
@@ -48,7 +48,7 @@ test.describe('Negative Authentication', () => {
         await expect(page).toHaveURL(/#\/auth\/login$/);
     });
 
-    test('AUTH-004 | rejects incorrect password @regression @auth', async ({ page }) => {
+    test('AUTH-004 | rejects incorrect password @regression @auth @negative', async ({ page }) => {
         const loginPage = new LoginPage(page);
 
         await loginPage.goto();

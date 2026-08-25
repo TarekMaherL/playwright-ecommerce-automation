@@ -6,7 +6,7 @@ test.describe('Products', () => {
     await productsPage.goto();
     });
 
-    test('PRODUCT-001 | product catalog loads for authenticated user @smoke', async ({ 
+    test('PRODUCT-001 | product catalog loads for authenticated user @smoke @regression', async ({ 
         page,
         productsPage 
     }) => {
@@ -96,7 +96,7 @@ test('PRODUCT-006 | product price remains consistent on details page @regression
     ).toBeVisible();
     });
 
-    test('PRODUCT-007 | user can add product to cart from catalog @smoke', async ({ productsPage }) => {
+    test('PRODUCT-007 | user can add product to cart from catalog @smoke @regression', async ({ productsPage }) => {
 
     const product = productData.products.adidasOriginal;
 
@@ -111,7 +111,7 @@ test('PRODUCT-006 | product price remains consistent on details page @regression
     ).toContainText('1');
     });
 
-    test('PRODUCT-008 | user can add product to cart from product details @smoke', async ({ 
+    test('PRODUCT-008 | user can add product to cart from product details @smoke @regression', async ({ 
     page,
     productsPage,
     productDetailsPage 

@@ -4,7 +4,7 @@ const productData = require('../../data/products.json');
 
 test.describe('API-Assisted UI Tests', () => {
 
-    test('E2E-002 | add product through API and validate it in cart UI @api @e2e @smoke', async ({
+    test('E2E-002 | add product through API and validate it in cart UI @api @e2e @smoke @regression', async ({
         request,
         page,
         cartPage

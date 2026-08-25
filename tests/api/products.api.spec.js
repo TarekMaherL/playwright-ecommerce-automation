@@ -46,7 +46,7 @@ test.describe('Products API', () => {
         expect(apiProduct.productStatus).toBe(true);
     });
 
-    test('API-004 | product catalog rejects request without authentication token @api @negative', async ({
+    test('API-004 | product catalog rejects request without authentication token @api @negative @regression', async ({
     request
     }) => {
         const response = await request.post(
@@ -65,7 +65,7 @@ test.describe('Products API', () => {
         );
     });
 
-    test('API-005 | product catalog rejects invalid authentication token @api @negative', async ({
+    test('API-005 | product catalog rejects invalid authentication token @api @negative @regression', async ({
     request
     }) => {
         const response = await request.post(
