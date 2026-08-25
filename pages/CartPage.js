@@ -16,6 +16,11 @@ class CartPage {
         });
     }
 
+
+    async goto() {
+    await this.page.goto('#/dashboard/cart');
+    }
+
     getCartItem(productName) {
         return this.page.locator('li.items').filter({
             has: this.page.getByText(productName, {
