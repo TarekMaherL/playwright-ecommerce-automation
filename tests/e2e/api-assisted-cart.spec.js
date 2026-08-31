@@ -7,14 +7,17 @@ test.describe('API-Assisted UI Tests', () => {
     test('E2E-002 | add product through API and validate it in cart UI @api @e2e @smoke @regression', async ({
         request,
         page,
-        cartPage
+        cartPage,
+        testAccount
     }) => {
         const expectedProduct =
             productData.products.adidasOriginal;
 
         // Authenticate through API
         const { token, userId } =
-            await getAuthData(request);
+            await getAuthData(request,
+                testAccount
+            );
 
         // Get the real product object from the backend
         const productsResponse = await request.post(

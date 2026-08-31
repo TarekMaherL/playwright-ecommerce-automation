@@ -1,32 +1,18 @@
-const path = require('path');
 const { defineConfig } = require('@playwright/test');
 const { environment } = require('./config/environment');
 
-const authFile = path.join(
-    __dirname,
-    'storage',
-    'auth.json'
-);
 
 module.exports = defineConfig({
     testDir: './tests',
 
     // Kept at 1 because the demo account has shared server-side state.
     // Parallel execution will be handled separately in Stage 21.
-    workers: 1,
-
+    workers: environment.testAccounts.length,
     use: {
         baseURL: environment.baseUrl,
     },
 
     projects: [
-        {
-            name: 'setup',
-            testMatch: '**/*.setup.js',
-            use: {
-                browserName: 'chromium',
-            },
-        },
 
         {
             name: 'api',
@@ -64,11 +50,9 @@ module.exports = defineConfig({
                 '**/api/*.spec.js',
                 '**/*.setup.js',
             ],
-            dependencies: ['setup'],
 
             use: {
                 browserName: 'chromium',
-                storageState: authFile,
             },
         },
 
@@ -79,11 +63,9 @@ module.exports = defineConfig({
                 '**/api/*.spec.js',
                 '**/*.setup.js',
             ],
-            dependencies: ['setup'],
 
             use: {
                 browserName: 'firefox',
-                storageState: authFile,
             },
         },
 
@@ -94,11 +76,9 @@ module.exports = defineConfig({
                 '**/api/*.spec.js',
                 '**/*.setup.js',
             ],
-            dependencies: ['setup'],
 
             use: {
                 browserName: 'webkit',
-                storageState: authFile,
             },
         },
     ],

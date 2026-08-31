@@ -1,10 +1,18 @@
-async function getAuthData(request) {
+const { environment } = require('../config/environment');
+
+async function getAuthData(
+    request,
+    account = {
+        email: environment.testEmail,
+        password: environment.testPassword,
+    }
+) {
     const response = await request.post(
         'https://rahulshettyacademy.com/api/ecom/auth/login',
         {
             data: {
-                userEmail: process.env.TEST_EMAIL,
-                userPassword: process.env.TEST_PASSWORD
+                userEmail: account.email,
+                userPassword: account.password
             }
         }
     );
@@ -35,8 +43,11 @@ async function getAuthData(request) {
     };
 }
 
-async function getAuthToken(request) {
-    const { token } = await getAuthData(request);
+async function getAuthToken(request, account) {
+    const { token } = await getAuthData(
+        request,
+        account
+    );
 
     return token;
 }
