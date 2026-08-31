@@ -103,8 +103,18 @@ class ProductsPage {
         ).check();
     }
     async filterByPriceRange(minPrice, maxPrice) {
-    await this.minPriceInput.fill(String(minPrice));
-    await this.maxPriceInput.fill(String(maxPrice));
+    await this.minPriceInput.clear();
+
+    await this.minPriceInput.pressSequentially(
+        String(minPrice)
+    );
+
+    await this.maxPriceInput.clear();
+
+    await this.maxPriceInput.pressSequentially(
+        String(maxPrice)
+    );
+
     await this.maxPriceInput.press('Enter');
     }
 
