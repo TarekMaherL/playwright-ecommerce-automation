@@ -3,8 +3,16 @@
   "version": "1.0.0",
   "description": "End-to-end e-commerce test automation framework using Playwright and JavaScript",
   "scripts": {
-    "test": "playwright test"
-  },
+  "test": "playwright test",
+  "test:smoke": "playwright test --grep @smoke",
+  "test:regression": "playwright test --grep @regression",
+  "test:negative": "playwright test --grep @negative",
+  "test:api": "playwright test --project=api",
+  "test:chromium": "playwright test --project=chromium",
+  "test:firefox": "playwright test --project=firefox",
+  "test:webkit": "playwright test --project=webkit",
+  "report": "playwright show-report"
+},
   "keywords": [],
   "author": "",
   "license": "ISC",
