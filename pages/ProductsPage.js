@@ -106,16 +106,18 @@ class ProductsPage {
     await this.minPriceInput.clear();
 
     await this.minPriceInput.pressSequentially(
-        String(minPrice)
+        String(minPrice),
+        { delay: 100 }
     );
 
     await this.maxPriceInput.clear();
 
     await this.maxPriceInput.pressSequentially(
-        String(maxPrice)
+        String(maxPrice),
+        { delay: 100 }
     );
 
-    await this.maxPriceInput.press('Enter');
+    await this.maxPriceInput.press('Tab');
     }
 
     async openCart() {

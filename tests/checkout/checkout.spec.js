@@ -67,21 +67,16 @@ test.describe('Checkout', () => {
     ).toBeVisible();
 
     await expect(
-        page.getByText(product.name, {
-            exact: true
-        })
+        confirmationPage.getProduct(product.name)
     ).toBeVisible();
 
     await expect(
-        page.getByText(
-            new RegExp(`\\$\\s*${product.price}`)
-        )
+        confirmationPage.getPrice(product.price)
     ).toBeVisible();
 
     const orderId = await confirmationPage.getOrderId();
 
     expect(orderId).toMatch(/^[a-f0-9]{24}$/i);
 
-    console.log('Created Order ID:', orderId);
     });
 });

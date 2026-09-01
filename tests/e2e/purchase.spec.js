@@ -94,8 +94,6 @@ test.describe('Purchase E2E', () => {
 
         expect(orderId).toMatch(/^[a-f0-9]{24}$/i);
 
-        console.log('E2E Order ID:', orderId);
-
         // Order history
         await ordersPage.openOrders();
 

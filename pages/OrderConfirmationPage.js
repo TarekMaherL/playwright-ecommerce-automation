@@ -11,6 +11,18 @@ class OrderConfirmationPage {
         );
     }
 
+    getProduct(productName) {
+        return this.page.getByText(productName, {
+            exact: true
+        });
+    }
+
+    getPrice(productPrice) {
+        return this.page.getByText(
+            new RegExp(`\\$\\s*${productPrice}`)
+        );
+    }
+
     async getOrderId() {
         const orderIdText = await this.orderIdLabel.textContent();
 

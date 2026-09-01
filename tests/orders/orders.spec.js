@@ -50,7 +50,6 @@ test.describe('Orders', () => {
 
         expect(orderId).toMatch(/^[a-f0-9]{24}$/i);
 
-        console.log('Created Order ID:', orderId);
 
         // Orders
         await ordersPage.openOrders();
@@ -118,8 +117,6 @@ test.describe('Orders', () => {
     const orderId = await confirmationPage.getOrderId();
 
     expect(orderId).toMatch(/^[a-f0-9]{24}$/i);
-
-    console.log('Created Order ID:', orderId);
 
     // Orders
     await ordersPage.openOrders();
